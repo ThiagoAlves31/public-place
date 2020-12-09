@@ -8,10 +8,13 @@ export class PlacesService {
     return AllPlaces
   }
 
-  findByParams(uf: string, nome: string) {
+  async findByParams(uf: string, nome: string) {
     
-    const data = nome ? [AllPlaces.find((value) => value.nome == nome) ] : AllPlaces
+    let data = nome ? AllPlaces.filter((value) => value.nome == nome.toUpperCase()) : AllPlaces
     
-    return uf ? [data.find((value) => value.uf == uf)] : data
+    if(uf)
+      data = data.filter((value) => value.uf == uf.toUpperCase())
+    
+    return data
   }
 }
