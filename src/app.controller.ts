@@ -1,12 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Query, Redirect } from '@nestjs/common';
 
-@Controller('api/logradouro/v1/endereco/municipios')
+@Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  @Redirect()
+  getMock() {
+      return { url: 'places/api/logradouro/v1/endereco/municipios' };
+    }
 }
